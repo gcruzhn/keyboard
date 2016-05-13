@@ -29,6 +29,10 @@
 #define USB_LED_COMPOSE     3
 #define USB_LED_KANA        4
 
+// TIMERS
+#define KEY_TAP_FAST 85
+#define KEY_TAP_SLOW 100
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Base layer
  * Keys with double values (like Esc/Ctrl) correspond to the 'tapped' key and the 'held' key, respectively
@@ -83,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|      |           |PSCR  |------+------+------+------+------+--------|
  * |CAPSLOCK|      |      |      |      |      |      |           |      |      |   1  |   2  |   3  |   /  |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |      |CTRL-Z|CTRL-X|CTRL-C|CTRL-V|                                       |      |    . |   0  |   =  |      |
+ *   |CTRL-Y|CTRL-Z|CTRL-X|CTRL-C|CTRL-V|                                       |      |    . |   0  |   =  |      |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        |      |      |       | Prev | Next |
@@ -99,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS, KC_NONUS_BSLASH, LSFT(KC_NONUS_BSLASH), KC_MS_U, KC_NO, KC_NO, KC_NO,
        KC_NO  , KC_NO, KC_MS_L, KC_MS_D, KC_MS_R, KC_NO  ,
        M(CAPS), KC_NO, KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO,
-       KC_NO  , LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V),
+       LCTL(KC_Y), LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V),
                                                             KC_NO  , KC_TRNS,
                                                                        KC_NO,
                                                 KC_BTN1, KC_BTN2, TG(QWERTY),
@@ -171,7 +175,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
                 register_code(KC_RSFT);
             } else {
                 unregister_code(KC_RSFT);
-                if (timer_elapsed(key_timer) < 150) {
+                if (timer_elapsed(key_timer) < KEY_TAP_SLOW) {
                     register_code(KC_RALT);
                     register_code(KC_QUOTE);
                     unregister_code(KC_QUOTE);
@@ -186,7 +190,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
                 register_code(KC_RSFT);
             } else { 
                 unregister_code(KC_RSFT);
-                if (timer_elapsed(key_timer) < 150) { 
+                if (timer_elapsed(key_timer) < KEY_TAP_FAST) { 
                     register_code(KC_RALT); 
                     register_code(KC_BSLS); 
                     unregister_code(KC_BSLS); 
@@ -201,7 +205,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
                 register_code(KC_LALT);
             } else { 
                 unregister_code(KC_LALT);
-                if (timer_elapsed(key_timer) < 150) { 
+                if (timer_elapsed(key_timer) < KEY_TAP_SLOW) { 
                     register_code(KC_RALT); 
                     register_code(KC_LBRACKET); 
                     unregister_code(KC_LBRACKET); 
@@ -216,7 +220,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
                 register_code(KC_LALT);
             } else { 
                 unregister_code(KC_LALT);
-                if (timer_elapsed(key_timer) < 150) { 
+                if (timer_elapsed(key_timer) < KEY_TAP_SLOW) { 
                     register_code(KC_RALT); 
                     register_code(KC_RBRACKET); 
                     unregister_code(KC_RBRACKET); 
