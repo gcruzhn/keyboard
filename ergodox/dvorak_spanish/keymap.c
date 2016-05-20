@@ -31,7 +31,7 @@
 
 // TIMERS
 #define KEY_TAP_FAST 85
-#define KEY_TAP_SLOW 100
+#define KEY_TAP_SLOW 95
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Base layer
@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        |  F5  |  F6  |       |  F7  |  F8  |
  *                                 ,------|------|------|       |------+--------+------.
  *                                 |      |      |  F4  |       |  F11 |        |      |
- *                                 | BSPC | TAB  |------|       |------|  ENTER | SPACE|
+ *                                 | ENTER| TAB  |------|       |------|  BSPC  | SPACE|
  *                                 |      |      |F3/SA |       |F12/SA|        |      |
  *                                 `--------------------'       `----------------------'
  */
@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         M(OBRACK),      KC_HOME,KC_PGDN,KC_PGUP,KC_END,
                                                                    KC_F5,  LT(AUX, KC_F6),
                                                                                     KC_F4,
-                                          KC_BSPC,KC_TAB,MT((MOD_LALT | MOD_LSFT), KC_F3),
+                                           KC_ENT,KC_TAB,MT((MOD_LALT | MOD_LSFT), KC_F3),
         // right hand
                     KC_EQL,    KC_6,   KC_7,   KC_8,   KC_9,   KC_0,   KC_MINUS,
                     KC_FN1,    KC_F,   KC_G,   KC_C,   KC_H,   KC_L,   ALL_T(KC_RBRACKET),
@@ -74,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                        KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,M(CBRACK),
         KC_F7, KC_F8,
         KC_F11,
-        MT(MOD_LALT | MOD_LSFT, KC_F12),KC_ENT, KC_SPC
+        MT(MOD_LALT | MOD_LSFT, KC_F12),KC_BSPC, KC_SPC
     ),
 /* Keymap 1: Aux layer
  *
@@ -134,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        |  F5  | TRANS|       |  F7  |  F8  |
  *                                 ,------|------|------|       |------+--------+------.
  *                                 |      |      |  F4  |       |  F11 |        |      |
- *                                 | BSPC | TAB  |------|       |------|  ENTER | SPACE|
+ *                                 | ENTER| TAB  |------|       |------|  BSPC  | SPACE|
  *                                 |      |      |TRANS |       |F12/SA|        |      |
  *                                 `--------------------'       `----------------------'
  */
@@ -147,7 +147,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         M(OBRACK),      KC_HOME,KC_PGDN,KC_PGUP,KC_END,
                                                                           KC_F5,  KC_TRNS,
                                                                                     KC_F4,
-                                                                   KC_BSPC,KC_TAB,KC_TRNS,
+                                                                    KC_ENT,KC_TAB,KC_TRNS,
         // right hand
                     KC_EQL,    KC_6,   KC_7,   KC_8,   KC_9,   KC_0,   KC_MINUS,
                     KC_TRNS,   KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   ALL_T(KC_RBRACKET),
@@ -156,7 +156,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                        KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,M(CBRACK),
         KC_F7, KC_F8,
         KC_F11,
-        MT(MOD_LALT | MOD_LSFT, KC_F12),KC_ENT, KC_SPC
+        MT(MOD_LALT | MOD_LSFT, KC_F12),KC_BSPC, KC_SPC
 ),
 };
 
@@ -190,7 +190,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
                 register_code(KC_RSFT);
             } else { 
                 unregister_code(KC_RSFT);
-                if (timer_elapsed(key_timer) < KEY_TAP_FAST) { 
+                if (timer_elapsed(key_timer) < KEY_TAP_SLOW) { 
                     register_code(KC_RALT); 
                     register_code(KC_BSLS); 
                     unregister_code(KC_BSLS); 
