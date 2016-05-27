@@ -49,9 +49,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   |[/LALT| HOME |PGDOWN| PGUP | END  |                                       | LEFT | DOWN |  UP  |RIGHT |]/LALT|
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        |  F5  |  F6  |       |  F7  |  F8  |
+ *                                        |  F5  |F6/~L1|       |F7/~L1|  F8  |
  *                                 ,------|------|------|       |------+--------+------.
- *                                 |      |      |  F4  |       |  F11 |        |      |
+ *                                 |      |      |F4/CA |       |F11/CA|        |      |
  *                                 | ENTER| TAB  |------|       |------|  BSPC  | SPACE|
  *                                 |      |      |F3/SA |       |F12/SA|        |      |
  *                                 `--------------------'       `----------------------'
@@ -64,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         M(OBRACE),      KC_SLSH,KC_Q,   KC_J,   KC_K,   KC_X,   KC_LGUI,
         M(OBRACK),      KC_HOME,KC_PGDN,KC_PGUP,KC_END,
                                                                    KC_F5,  LT(AUX, KC_F6),
-                                                                                    KC_F4,
+                                                           MT(MOD_LALT | MOD_LCTL, KC_F4),
                                            KC_ENT,KC_TAB,MT((MOD_LALT | MOD_LSFT), KC_F3),
         // right hand
                     KC_EQL,    KC_6,   KC_7,   KC_8,   KC_9,   KC_0,   KC_MINUS,
@@ -72,8 +72,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                KC_D,   KC_R,   KC_T,   KC_N,   KC_S,   CTL_T(KC_QUOTE),
                     KC_RALT,   KC_B,   KC_M,   KC_W,   KC_V,   KC_Z,   M(CBRACE),
                                        KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,M(CBRACK),
-        KC_F7, KC_F8,
-        KC_F11,
+        LT(AUX, KC_F7), KC_F8,
+        MT(MOD_LALT | MOD_LCTL, KC_F11),
         MT(MOD_LALT | MOD_LSFT, KC_F12),KC_BSPC, KC_SPC
     ),
 /* Keymap 1: Aux layer
@@ -90,10 +90,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   |CTRL-Y|CTRL-Z|CTRL-X|CTRL-C|CTRL-V|                                       |      |    . |   0  |   =  |      |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        |      |      |       | Prev | Next |
+ *                                        |      |      |       |      | Play |
  *                                 ,------|------|------|       |------+------+------.
  *                                 |      |      |      |       | VolUp|      |      |
- *                                 | Lclk | Rclk |------|       |------| Play | Stop |
+ *                                 | Lclk | Rclk |------|       |------| Prev | Next |
  *                                 |      |      |  L2  |       | VolDn|      |      |
  *                                 `--------------------'       `--------------------'
  */
@@ -113,9 +113,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                      KC_NO,   KC_4,   KC_5,   KC_6,    KC_PPLS, KC_BSLASH,
             KC_PSCR, KC_NO,   KC_1,   KC_2,   KC_3,    KC_PSLS, KC_NO,
                               KC_NO  ,KC_DOT, KC_0,    KC_PEQL, KC_NO,
-       KC_MPRV, KC_MNXT,
+       KC_TRNS, KC_MPLY,
        KC_VOLU,
-       KC_VOLD, KC_MPLY, KC_MSTP
+       KC_VOLD, KC_MPRV, KC_MNXT,
 ),
 /* Keymap 2: QWERTY layer
  *
