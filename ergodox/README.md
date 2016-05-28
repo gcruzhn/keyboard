@@ -1,8 +1,94 @@
-# SPANISH DVORAK LAYOUT (see http://djelibeibi.unex.es/dvorak/)
- * Layer 1: auxiliary keys
- * Layer 2: full qwerty layout
+## SPANISH DVORAK LAYOUT
+ * see spanish dvorak layout [here](http://djelibeibi.unex.es/dvorak/)
+ * Layer 0: spanish dvorak with some customizations (see layout below)
+ * Layer 1: auxiliary keys (includes qwerty shortcuts, numpad...)
+ * Layer 2: qwerty layout with customizations
 
  * IMPORTANT: Software layout must be set to SPANISH QWERTY to work properly
 
-# .hex file generation (only needed if keymap.c is modified)
-Execute install.sh (first time only) and generate.sh scripts
+### Keymap 0: Base layer
+Keys with double values (like Esc/Ctrl) correspond to the 'tapped' key and the 'held' key, respectively
+
+<pre><code>
+
+,--------------------------------------------------.           ,--------------------------------------------------.
+|   \    |   1  |   2  |   3  |   4  |   5  |  <>  |           |   ¡  |   6  |   7  |   8  |   9  |   0  |   '    |
+|--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+| F1/~L1 |   .  |   ,  |   Ñ  |   P  |   Y  |MEH_T |           |  L1  |   F  |   G  |   C  |   H  |   L  |ALL_T/+ |
+|--------+------+------+------+------+------| DEL  |           | ~L1  |------+------+------+------+------+--------|
+|Esc/Ctrl|   A  |   O  |   E  |   U  |   I  |------|           |------|   D  |   R  |   T  |   N  |   S  |'/RCtrl |
+|--------+------+------+------+------+------| LGUI |           | RALT |------+------+------+------+------+--------|
+| {/LSft |   -  |   Q  |   J  |   K  |   X  |      |           |      |   B  |   M  |   W  |   V  |   Z  | }/RSft |
+`--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+  |[/LALT| HOME |PGDOWN| PGUP | END  |                                       | LEFT | DOWN |  UP  |RIGHT |]/LALT|
+  `----------------------------------'                                       `----------------------------------'
+                                       ,-------------.       ,-------------.
+                                       |F5/CAG|F6/~L1|       |F7/~L1|F8/CAG|
+                                ,------|------|------|       |------+--------+------.
+                                |      |      |F4/CA |       |F11/CA|        |      |
+                                | ENTER| TAB  |------|       |------|  BSPC  | SPACE|
+                                |      |      |F3/SA |       |F12/SA|        |      |
+                                `--------------------'       `----------------------'
+ CAG = CTRL-ALT-GUI
+  CA = CTRL-ALT
+  SA = SHIFT-ALT
+
+</pre></code>
+
+### Keymap 1: Aux layer
+
+<pre><code>
+
+,--------------------------------------------------.           ,--------------------------------------------------.
+|        |  F1  |  F2  |  F3  |  F4  |  F5  | SLEEP            | PWR  |  F6  |  F7  |  F8  |  F9  |  F10 |   F11  |
+|--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+|        |  <   |  >   | MsUp |      |      |      |           | ~L0  |      |   7  |   8  |   9  |   *  |  `^    |
+|--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+|        |      |MsLeft|MsDown|MsRght|      |------|           |------|      |   4  |   5  |   6  |   +  |   Ç    |
+|--------+------+------+------+------+------|      |           |PSCR  |------+------+------+------+------+--------|
+|CAPSLOCK|      |      |      |      |      |      |           |      |      |   1  |   2  |   3  |   /  |        |
+`--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+  |CTRL-S|CTRL-Z|CTRL-X|CTRL-C|CTRL-V|                                       |      |    . |   0  |   =  |      |
+  `----------------------------------'                                       `----------------------------------'
+                                       ,-------------.       ,-------------.
+                                       |      |      |       |      | Play |
+                                ,------|------|------|       |------+------+------.
+                                |      |      |      |       | VolUp|      |      |
+                                | Lclk | Rclk |------|       |------| Prev | Next |
+                                |      |      |  L2  |       | VolDn|      |      |
+                                `--------------------'       `--------------------'
+
+</pre></code>
+
+### Keymap 2: QWERTY layer
+
+<pre><code>
+
+,--------------------------------------------------.           ,--------------------------------------------------.
+|   \    |   1  |   2  |   3  |   4  |   5  |  <>  |           |   ¡  |   6  |   7  |   8  |   9  |   0  |   '    |
+|--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+|  TRANS |   Q  |   W  |   E  |   R  |   T  |MEH_T |           | TRANS|   Y  |   U  |   I  |   O  |   P  |ALL_T/+ |
+|--------+------+------+------+------+------| DEL  |           |      |------+------+------+------+------+--------|
+|Esc/Ctrl|   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   Ñ  |'/RCtrl |
+|--------+------+------+------+------+------| LGUI |           | RALT |------+------+------+------+------+--------|
+| {/LSft |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   -  | }/RSft |
+`--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+  |[/LALT| HOME |PGDOWN| PGUP | END  |                                       | LEFT | DOWN |  UP  |RIGHT |]/LALT|
+  `----------------------------------'                                       `----------------------------------'
+                                       ,-------------.       ,-------------.
+                                       |F5/CAG| TRANS|       | TRANS|F8/CAG|
+                                ,------|------|------|       |------+--------+------.
+                                |      |      |F4/CA |       |F11/CA|        |      |
+                                | ENTER| TAB  |------|       |------|  BSPC  | SPACE|
+                                |      |      | TRANS|       |F12/SA|        |      |
+                                `--------------------'       `----------------------'
+ CAG = CTRL-ALT-GUI
+  CA = CTRL-ALT
+  SA = SHIFT-ALT
+
+</pre></code>
+
+
+# .hex file generation
+> Execute install.sh (first time only) and generate.sh scripts. [Download from here](https://github.com/johgh/keyboard/tree/master/ergodox)
+> Flash with `teensy_loader` binary (should be installed from previous step)
