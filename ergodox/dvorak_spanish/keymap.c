@@ -49,12 +49,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   |[/LALT| HOME |PGDOWN| PGUP | END  |                                       | LEFT | DOWN |  UP  |RIGHT |]/LALT|
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        |  F5  |F6/~L1|       |F7/~L1|  F8  |
+ *                                        |F5/CAG|F6/~L1|       |F7/~L1|F8/CAG|
  *                                 ,------|------|------|       |------+--------+------.
  *                                 |      |      |F4/CA |       |F11/CA|        |      |
  *                                 | ENTER| TAB  |------|       |------|  BSPC  | SPACE|
  *                                 |      |      |F3/SA |       |F12/SA|        |      |
  *                                 `--------------------'       `----------------------'
+ *  CAG = CTRL-ALT-GUI
+ *   CA = CTRL-ALT
+ *   SA = SHIFT-ALT
+ *
  */
 [BASE] = KEYMAP(
         // left hand
@@ -63,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         CTL_T(KC_ESC),  KC_A,   KC_O,   KC_E,   KC_U,   KC_I,
         M(OBRACE),      KC_SLSH,KC_Q,   KC_J,   KC_K,   KC_X,   KC_LGUI,
         M(OBRACK),      KC_HOME,KC_PGDN,KC_PGUP,KC_END,
-                                                                   KC_F5,  LT(AUX, KC_F6),
+                                                           LCAG_T(KC_F5),  LT(AUX, KC_F6),
                                                            MT(MOD_LALT | MOD_LCTL, KC_F4),
                                            KC_ENT,KC_TAB,MT((MOD_LALT | MOD_LSFT), KC_F3),
         // right hand
@@ -72,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                KC_D,   KC_R,   KC_T,   KC_N,   KC_S,   CTL_T(KC_QUOTE),
                     KC_RALT,   KC_B,   KC_M,   KC_W,   KC_V,   KC_Z,   M(CBRACE),
                                        KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,M(CBRACK),
-        LT(AUX, KC_F7), KC_F8,
+        LT(AUX, KC_F7), LCAG_T(KC_F8),
         MT(MOD_LALT | MOD_LCTL, KC_F11),
         MT(MOD_LALT | MOD_LSFT, KC_F12),KC_BSPC, KC_SPC
     ),
@@ -87,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|      |           |PSCR  |------+------+------+------+------+--------|
  * |CAPSLOCK|      |      |      |      |      |      |           |      |      |   1  |   2  |   3  |   /  |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |CTRL-Y|CTRL-Z|CTRL-X|CTRL-C|CTRL-V|                                       |      |    . |   0  |   =  |      |
+ *   |CTRL-S|CTRL-Z|CTRL-X|CTRL-C|CTRL-V|                                       |      |    . |   0  |   =  |      |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        |      |      |       |      | Play |
@@ -103,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS, KC_NONUS_BSLASH, LSFT(KC_NONUS_BSLASH), KC_MS_U, KC_NO, KC_NO, KC_NO,
        KC_NO  , KC_NO, KC_MS_L, KC_MS_D, KC_MS_R, KC_NO  ,
        M(CAPS), KC_NO, KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO,
-       LCTL(KC_Y), LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V),
+       LCTL(KC_S), LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V),
                                                             KC_NO  , KC_TRNS,
                                                                        KC_NO,
                                                 KC_BTN1, KC_BTN2, TG(QWERTY),
@@ -115,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                               KC_NO  ,KC_DOT, KC_0,    KC_PEQL, KC_NO,
        KC_TRNS, KC_MPLY,
        KC_VOLU,
-       KC_VOLD, KC_MPRV, KC_MNXT,
+       KC_VOLD, KC_MPRV, KC_MNXT
 ),
 /* Keymap 2: QWERTY layer
  *
@@ -131,12 +135,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   |[/LALT| HOME |PGDOWN| PGUP | END  |                                       | LEFT | DOWN |  UP  |RIGHT |]/LALT|
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        |  F5  | TRANS|       |  F7  |  F8  |
+ *                                        |F5/CAG| TRANS|       | TRANS|F8/CAG|
  *                                 ,------|------|------|       |------+--------+------.
- *                                 |      |      |  F4  |       |  F11 |        |      |
+ *                                 |      |      |F4/CA |       |F11/CA|        |      |
  *                                 | ENTER| TAB  |------|       |------|  BSPC  | SPACE|
- *                                 |      |      |TRANS |       |F12/SA|        |      |
+ *                                 |      |      | TRANS|       |F12/SA|        |      |
  *                                 `--------------------'       `----------------------'
+ *  CAG = CTRL-ALT-GUI
+ *   CA = CTRL-ALT
+ *   SA = SHIFT-ALT
+ *
  */
 [QWERTY] = KEYMAP(
         // left hand
@@ -145,8 +153,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         CTL_T(KC_ESC),  KC_A,   KC_S,   KC_D,   KC_F,   KC_G,
         M(OBRACE),      KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_LGUI,
         M(OBRACK),      KC_HOME,KC_PGDN,KC_PGUP,KC_END,
-                                                                          KC_F5,  KC_TRNS,
-                                                                                    KC_F4,
+                                                                  LCAG_T(KC_F5),  KC_TRNS,
+                                                           MT(MOD_LALT | MOD_LCTL, KC_F4),
                                                                     KC_ENT,KC_TAB,KC_TRNS,
         // right hand
                     KC_EQL,    KC_6,   KC_7,   KC_8,   KC_9,   KC_0,   KC_MINUS,
@@ -154,8 +162,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,CTL_T(KC_QUOTE),
                     KC_RALT,   KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,M(CBRACE),
                                        KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,M(CBRACK),
-        KC_F7, KC_F8,
-        KC_F11,
+        KC_TRNS, LCAG_T(KC_F8),
+        MT(MOD_LALT | MOD_LCTL, KC_F11),
         MT(MOD_LALT | MOD_LSFT, KC_F12),KC_BSPC, KC_SPC
 ),
 };
