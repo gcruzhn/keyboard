@@ -1,10 +1,11 @@
-## ERGODOX SPANISH DVORAK LAYOUT
+# Ergodox Spanish Dvorak Layout
  * See spanish dvorak layout [here](http://djelibeibi.unex.es/dvorak/)
- * IMPORTANT: Software layout must be set to SPANISH QWERTY to work properly
+ * Software layout must be set to SPANISH QWERTY to work properly
 
- * Layer 0: spanish dvorak with some customizations (see layout below)
- * Layer 1: auxiliary keys (includes qwerty shortcuts, numpad...)
- * Layer 2: qwerty layout with customizations
+## Keymap Layers
+ - L0: spanish dvorak with some customizations (see layout below)
+ - L1: auxiliary keys (includes qwerty shortcuts, numpad...)
+ - L2: qwerty layout with customizations
 
 
 ### Keymap 0: Base layer
