@@ -1,10 +1,11 @@
 ## SPANISH DVORAK LAYOUT
- * see spanish dvorak layout [here](http://djelibeibi.unex.es/dvorak/)
+ * See spanish dvorak layout [here](http://djelibeibi.unex.es/dvorak/)
+ * IMPORTANT: Software layout must be set to SPANISH QWERTY to work properly
+
  * Layer 0: spanish dvorak with some customizations (see layout below)
  * Layer 1: auxiliary keys (includes qwerty shortcuts, numpad...)
  * Layer 2: qwerty layout with customizations
 
- * IMPORTANT: Software layout must be set to SPANISH QWERTY to work properly
 
 ### Keymap 0: Base layer
 Keys with double values (like Esc/Ctrl) correspond to the 'tapped' key and the 'held' key, respectively
@@ -90,8 +91,8 @@ Keys with double values (like Esc/Ctrl) correspond to the 'tapped' key and the '
 
 
 ## Generation of .hex file
-> Execute install.sh (first time only) and generate.sh scripts.
+> [Download scripts from here](https://github.com/johgh/keyboard/tree/master/ergodox)
 
-> [Download from here](https://github.com/johgh/keyboard/tree/master/ergodox)
+> Execute install.sh and generate.sh scripts.
 
 > Flash with `teensy_loader` binary (should be installed from previous step)
