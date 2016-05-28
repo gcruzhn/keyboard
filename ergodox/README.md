@@ -1,4 +1,4 @@
-## SPANISH DVORAK LAYOUT
+## ERGODOX SPANISH DVORAK LAYOUT
  * See spanish dvorak layout [here](http://djelibeibi.unex.es/dvorak/)
  * IMPORTANT: Software layout must be set to SPANISH QWERTY to work properly
 
