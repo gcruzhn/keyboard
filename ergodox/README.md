@@ -5,7 +5,8 @@
 ## Keymap Layers
  - L0: spanish dvorak with some customizations (see layout below)
  - L1: auxiliary keys (includes qwerty shortcuts, numpad...)
- - L2: qwerty layout with customizations
+ - L2: navigation keys (left hand only layer)
+ - L3: qwerty layout with customizations
 
 
 ### Keymap 0: Base layer
@@ -62,7 +63,32 @@ Keys with double values (like Esc/Ctrl) correspond to the 'tapped' key and the '
 
 </pre></code>
 
-### Keymap 2: QWERTY layer
+### Keymap 2: Navigation layer
+
+<pre><code>
+
+,--------------------------------------------------.           ,--------------------------------------------------.
+|  F11   |  F1  |  F2  |  F3  |  F4  |  F5  |      |           |      |      |      |      |      |      |        |
+|--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+|CTRL-0  |  <   |  >   |   .  | MsUp |      |TRANS |           |      |      |      |      |      |      |        |
+|--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+|  ESC   | SPACE| ENTER|MsLeft|MsDown|MsRght|------|           |------|      |      |      |      |      |        |
+|--------+------+------+------+------+------|TRANS |           |      |------+------+------+------+------+--------|
+| CTRL-+ | LEFT | DOWN |  UP  |RIGHT |      |      |           |      |      |      |      |      |      |        |
+'--------+------+------+------+------+-------------'           '-------------+------+------+------+------+--------'
+  |CTRL--| HOME |PGDOWN| PGUP | END  |                                       |      |      |      |      |      |
+  '----------------------------------'                                       '----------------------------------'
+                                       ,-------------.       ,-------------.
+                                       | BACK | FWD  |       |      |      |
+                                ,------|------|------|       |------+------+------.
+                                |      |      |VolUp |       |      |      |      |
+                                | Lclk | Rclk |------|       |------|      |      |
+                                |      |      |VolDn |       |      |      |      |
+                                '--------------------'       '--------------------'
+
+</pre></code>
+
+### Keymap 3: QWERTY layer
 
 <pre><code>
 

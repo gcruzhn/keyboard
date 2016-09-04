@@ -5,7 +5,8 @@
 /******************************************************************************************
  * SPANISH DVORAK LAYOUT (see http://djelibeibi.unex.es/dvorak/)
  * Layer 1: auxiliary keys
- * Layer 2: full qwerty layout
+ * Layer 2: navigation keys (left hand only layer)
+ * Layer 3: full qwerty layout
  ******************************************************************************************
  * IMPORTANT: Software layout must be set to SPANISH QWERTY to work properly
  *****************************************************************************************/
@@ -13,7 +14,8 @@
 // LAYERS
 #define BASE    0 // dvorak layout (default)
 #define AUX     1 // auxiliary keys
-#define QWERTY  2 // qwerty layout
+#define NAV     2 // navigation layout
+#define QWERTY  3 // qwerty layout
 
 // MACROS
 #define OBRACE 0 // key { or shift
@@ -31,7 +33,7 @@
 
 // TIMERS
 #define KEY_TAP_FAST 85
-#define KEY_TAP_SLOW 95
+#define KEY_TAP_SLOW 90
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Base layer
@@ -65,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRAVE,       KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   KC_NONUS_BSLASH,
         LT(AUX, KC_F1), KC_DOT, KC_COMM,KC_SCLN,KC_P,   KC_Y,   MEH_T(KC_DEL),
         CTL_T(KC_ESC),  KC_A,   KC_O,   KC_E,   KC_U,   KC_I,
-        M(OBRACE),      KC_SLSH,KC_Q,   KC_J,   KC_K,   KC_X,   KC_LGUI,
+       M(OBRACE),      KC_SLSH,KC_Q,   KC_J,   KC_K,   KC_X,   KC_LGUI,
         M(OBRACK),      KC_HOME,KC_PGDN,KC_PGUP,KC_END,
                                                            LCAG_T(KC_F5),  LT(AUX, KC_F6),
                                                            MT(MOD_LALT | MOD_LCTL, KC_F4),
@@ -85,10 +87,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |        |  F1  |  F2  |  F3  |  F4  |  F5  | SLEEP            | PWR  |  F6  |  F7  |  F8  |  F9  |  F10 |   F11  |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |        |  <   |  >   | MsUp |      |      |      |           | ~L0  |      |   7  |   8  |   9  |   *  |  `^    |
+ * |        |  <   |  >   |      |      |      |  L2  |           |TRANS |      |   7  |   8  |   9  |   *  |  `^    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |MsLeft|MsDown|MsRght|      |------|           |------|      |   4  |   5  |   6  |   +  |   Ç    |
- * |--------+------+------+------+------+------|      |           |PSCR  |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |------|           |------|      |   4  |   5  |   6  |   +  |   Ç    |
+ * |--------+------+------+------+------+------|  L3  |           |PSCR  |------+------+------+------+------+--------|
  * |CAPSLOCK|      |      |      |      |      |      |           |      |      |   1  |   2  |   3  |   /  |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   |CTRL-S|CTRL-Z|CTRL-X|CTRL-C|CTRL-V|                                       |      |    . |   0  |   =  |      |
@@ -97,20 +99,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        |      |      |       |      | Play |
  *                                 ,------|------|------|       |------+------+------.
  *                                 |      |      |      |       | VolUp|      |      |
- *                                 | Lclk | Rclk |------|       |------| Prev | Next |
- *                                 |      |      |  L2  |       | VolDn|      |      |
+ *                                 | BSPC |      |------|       |------| Prev | Next |
+ *                                 |      |      |      |       | VolDn|      |      |
  *                                 `--------------------'       `--------------------'
  */
 [AUX] = KEYMAP(
        // left hand
        KC_NO  , KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_SLEP,
-       KC_TRNS, KC_NONUS_BSLASH, LSFT(KC_NONUS_BSLASH), KC_MS_U, KC_NO, KC_NO, KC_NO,
-       KC_NO  , KC_NO, KC_MS_L, KC_MS_D, KC_MS_R, KC_NO  ,
-       M(CAPS), KC_NO, KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO,
+       KC_TRNS, KC_NONUS_BSLASH, LSFT(KC_NONUS_BSLASH), KC_NO, KC_NO, KC_NO, TG(NAV),
+       KC_NO  , KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+       M(CAPS), KC_NO,KC_NO,KC_NO, KC_NO, KC_NO, TG(QWERTY),
        LCTL(KC_S), LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V),
                                                             KC_NO  , KC_TRNS,
                                                                        KC_NO,
-                                                KC_BTN1, KC_BTN2, TG(QWERTY),
+                                                KC_BSPC, KC_NO, KC_NO,
        // right hand
             KC_PWR,  KC_F6,   KC_F7,  KC_F8,  KC_F9,   KC_F10,  KC_F11,
             KC_TRNS, KC_NO,   KC_7,   KC_8,   KC_9,    KC_PAST, KC_LBRACKET,
@@ -121,15 +123,56 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_VOLU,
        KC_VOLD, KC_MPRV, KC_MNXT
 ),
-/* Keymap 2: QWERTY layer
+/* Keymap 2: Navigation layer
+ *
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * |  F11   |  F1  |  F2  |  F3  |  F4  |  F5  |      |           |      |      |      |      |      |      |        |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * |CTRL-0  |  <   |  >   |   .  | MsUp |      |TRANS |           |      |      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |  ESC   | SPACE| ENTER|MsLeft|MsDown|MsRght|------|           |------|      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|TRANS |           |      |------+------+------+------+------+--------|
+ * | CTRL-+ | LEFT | DOWN |  UP  |RIGHT |      |      |           |      |      |      |      |      |      |        |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |CTRL--| HOME |PGDOWN| PGUP | END  |                                       |      |      |      |      |      |
+ *   `----------------------------------'                                       `----------------------------------'
+ *                                        ,-------------.       ,-------------.
+ *                                        | BACK | FWD  |       |      |      |
+ *                                 ,------|------|------|       |------+------+------.
+ *                                 |      |      |VolUp |       |      |      |      |
+ *                                 | Lclk | Rclk |------|       |------|      |      |
+ *                                 |      |      |VolDn |       |      |      |      |
+ *                                 `--------------------'       `--------------------'
+ */
+[NAV] = KEYMAP(
+       // left hand
+        KC_F11  , KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_NO,
+       LCTL(KC_0), KC_NONUS_BSLASH, LSFT(KC_NONUS_BSLASH), KC_DOT,  KC_MS_U, KC_NO, KC_TRNS,
+       KC_ESC  , KC_SPC, KC_ENT, KC_MS_L, KC_MS_D, KC_MS_R,
+       LCTL(KC_RBRACKET), KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT, KC_NO, KC_TRNS,
+       LCTL(KC_SLSH), KC_HOME,KC_PGDN,KC_PGUP,KC_END,
+                                                 LALT(KC_LEFT), LALT(KC_RIGHT),
+                                                                       KC_VOLU,
+                                                     KC_BTN1, KC_BTN2, KC_VOLD,
+       // right hand
+            KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,
+            KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,
+                    KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,
+            KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,
+                            KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,
+       KC_NO, KC_NO,
+       KC_NO,
+       KC_NO, KC_NO, KC_NO
+),
+/* Keymap 3: QWERTY layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |   \    |   1  |   2  |   3  |   4  |   5  |  <>  |           |   ¡  |   6  |   7  |   8  |   9  |   0  |   '    |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |  TRANS |   Q  |   W  |   E  |   R  |   T  |MEH_T |           | TRANS|   Y  |   U  |   I  |   O  |   P  |ALL_T/+ |
- * |--------+------+------+------+------+------| DEL  |           |      |------+------+------+------+------+--------|
+ * |  TRANS |   Q  |   W  |   E  |   R  |   T  |TRANS |           | TRANS|   Y  |   U  |   I  |   O  |   P  |ALL_T/+ |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |Esc/Ctrl|   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   Ñ  |'/RCtrl |
- * |--------+------+------+------+------+------| LGUI |           | RALT |------+------+------+------+------+--------|
+ * |--------+------+------+------+------+------|TRANS |           | RALT |------+------+------+------+------+--------|
  * | {/LSft |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   -  | }/RSft |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   |[/LALT| HOME |PGDOWN| PGUP | END  |                                       | LEFT | DOWN |  UP  |RIGHT |]/LALT|
@@ -149,13 +192,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [QWERTY] = KEYMAP(
         // left hand
         KC_GRAVE,       KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   KC_NONUS_BSLASH,
-        KC_TRNS,        KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   MEH_T(KC_DEL),
+        KC_TRNS,        KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_TRNS,
         CTL_T(KC_ESC),  KC_A,   KC_S,   KC_D,   KC_F,   KC_G,
-        M(OBRACE),      KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_LGUI,
+        M(OBRACE),      KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_TRNS,
         M(OBRACK),      KC_HOME,KC_PGDN,KC_PGUP,KC_END,
                                                                   LCAG_T(KC_F5),  KC_TRNS,
                                                            MT(MOD_LALT | MOD_LCTL, KC_F4),
-                                                                    KC_ENT,KC_TAB,KC_TRNS,
+                                                                    KC_ENT,KC_TAB,KC_NO,
         // right hand
                     KC_EQL,    KC_6,   KC_7,   KC_8,   KC_9,   KC_0,   KC_MINUS,
                     KC_TRNS,   KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   ALL_T(KC_RBRACKET),
@@ -269,6 +312,11 @@ void matrix_scan_user(void) {
             break;
         case 2:
             ergodox_right_led_2_on();
+            break;
+        case 3:
+            ergodox_right_led_1_on();
+            ergodox_right_led_2_on();
+            ergodox_right_led_3_on();
             break;
         default:
             // none
