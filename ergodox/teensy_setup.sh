@@ -6,6 +6,8 @@
 
 #Copyright (c) 2012 Brandon Foltz
 
+#LAST EDITED BY jordihv at gmail.com on November 23, 2016
+
 #Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including #without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to #the following conditions:
 
 #The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
@@ -18,15 +20,15 @@
 
 OSIS64=0
 INSTALLPATH="$HOME/teensy"
-BIT64LOADERURL="http://www.pjrc.com/teensy/teensy.64bit.gz"
-BIT32LOADERURL="http://www.pjrc.com/teensy/teensy.gz"
+BIT64LOADERURL="http://www.pjrc.com/teensy/teensy_linux64.tar.gz"
+BIT32LOADERURL="http://www.pjrc.com/teensy/teensy_linux32.tar.gz"
 UDEVRULESURL="http://www.pjrc.com/teensy/49-teensy.rules"
 TMPRULESPATH="/tmp/49-teensy.rules"
 RULESPATH="/etc/udev/rules.d"
-TMPLOADERPATH="/tmp/teensy_loader.gz"
+TMPLOADERPATH="/tmp/teensy_loader.tar.gz"
 UNZIPPEDPATH="/tmp/teensy_loader"
 SYSTEMBINPATH="/usr/local/bin"
-UNZIPPEDFILENAME="teensy_loader"
+UNZIPPEDFILENAME="teensy"
 DOWNLOADGCCAVR=0
 
 echo "Welcome to the Teensy setup utility!"
@@ -95,13 +97,14 @@ if [ $OSIS64 == 1 ]; then
 	wget -O $TMPLOADERPATH $BIT64LOADERURL
 else
 	wget -O $TMPLOADERPATH $BIT32LOADERURL
-fi 
+fi
 
 #install teensy loader...
-gzip -dv $TMPLOADERPATH
-cp $UNZIPPEDPATH $SYSTEMBINPATH
+mkdir $UNZIPPEDPATH  >/dev/null 2>&1
+tar zxvf $TMPLOADERPATH -C $UNZIPPEDPATH
+cp $UNZIPPEDPATH/$UNZIPPEDFILENAME $SYSTEMBINPATH
 chmod +x $SYSTEMBINPATH/$UNZIPPEDFILENAME
 
 #finished!
 echo "Your system is now setup for developing on the Teensy."
-echo "To run the Teensy loader, type \"teensy_loader\" in your favorite terminal."
+echo "To run the Teensy loader, type \"teensy\" in your favorite terminal."
